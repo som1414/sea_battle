@@ -1,5 +1,9 @@
 from random import randint, choice
 from time import sleep
+import ctypes
+
+kernel32 = ctypes.windll.kernel32
+kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
 
 
 class BoardException(Exception):
@@ -189,7 +193,7 @@ class AI(Player):
             d = self.ask_injury()
         else:
             d = self.ask_back()
-        sleep(10)
+        sleep(5)
         print(f"Ход компьютера: {d.x + 1} {d.y + 1}")
         return d
 
